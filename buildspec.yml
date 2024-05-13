@@ -20,10 +20,6 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-
-  artifacts:
-    files:
-    - '**/*'
-  base-directory: base_dir
-  name: build-artifact-name
-  discard-paths: no    
+      - printf '[{"name":"console-app-task","imageUri":"%s"}]' 000251184253.dkr.ecr.eu-north-1.amazonaws.com/docker-demo:latest > imagedefinitions.json
+ artifacts:
+  files: imagedefinitions.json
